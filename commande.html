@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de Commande</title>
+    <style>
+        @keyframes backgroundChange {
+
+            0% { background-color: #750839; } 
+            25% { background-color: #7e2a1b; } 
+            50% { background-color: #4e4c2b; } 
+            75% { background-color: rgb(141, 55, 24); } 
+            100% { background-color: #5e0508; }
+        }
+        body {
+            animation: backgroundChange 5s infinite alternate;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #5e0508;
+        }
+        .cart-modal-content, .form-container {
+            background-color: #e7dcc8;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(239, 238, 240, 0.948);
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+        }
+        .form-container input, .form-container button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-container button {
+            background-color: #7e073c;
+            color: white;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #0e0d0d;
+        }
+        .cart-modal-content .close {
+            font-size: 30px;
+            color: #aaa;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .cart-modal-content .close:hover {
+            color: black;
+        }
+        .hidden {
+            display: none;
+        }
+        .product-details {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .quantity-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .quantity-group input {
+            width: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Formulaire de commande -->
+    <div class="form-container">
+        <h1>Formulaire de Commande</h1>
+        <form action="confirmation.php" method="post" onsubmit="validerCommande(event)">
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required><br><br>
+
+            <label for="adresse">Adresse :</label>
+            <input type="text" id="adresse" name="adresse" required><br><br>
+
+            <label for="telephone">Téléphone :</label>
+            <input type="tel" id="telephone" name="telephone" required><br><br>
+
+            <label for="quantite">Quantité :</label>
+            <input type="number" id="quantite" name="quantite" min="1" value="1" required><br><br>
+
+            <button type="submit">Valider la commande</button>
+        </form>
+    </div>
+
+    <script>
+        function togglePurchaseForm() {
+            document.getElementById('purchaseFormModal').classList.toggle('hidden');
+        }
+
+        function addToCart() {
+            let productName = document.getElementById('productName').innerText;
+            let productPrice = document.getElementById('productPrice').innerText;
+            let quantity = document.getElementById('quantity').value;
+
+            // Logic to add to cart (Example: show a message or save cart data)
+            alert(`${quantity} ${productName} ajouté(s) au panier à ${productPrice}`);
+            togglePurchaseForm();
+        }
+
+        function validerCommande(event) {
+            event.preventDefault(); // Prevent form submission for validation
+
+            let nom = document.getElementById('nom').value;
+            let adresse = document.getElementById('adresse').value;
+            let telephone = document.getElementById('telephone').value;
+            let quantite = document.getElementById('quantite').value;
+
+            if (nom && adresse && telephone && quantite > 0) {
+                alert("Commande validée ! Nous vous contactons bientôt.");
+                // You can proceed with the form submission after validation
+                event.target.submit();
+            } else {
+                alert("Veuillez remplir tous les champs correctement.");
+            }
+            window.location.href="accueil.html"
+        }
+    </script>
+</body>
+</html>

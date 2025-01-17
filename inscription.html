@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire D'inscription</title>
+    <link rel="stylesheet" href="inscription.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script>
+        function validerCommande(event) {
+            // Empêche l'envoi direct du formulaire
+            event.preventDefault();
+
+            // Vérification des champs
+            const nom = document.getElementById("nom").value;
+            const prénom = document.getElementById("prénom").value;
+            const mail = document.getElementById("mail").value;
+            const mdp = document.getElementById("mdp").value;
+            const Cmdp = document.getElementById("Cmdp").value;
+
+            if (nom === "" || prénom === "" || mail === "" || mdp === "" || Cmdp === "") {
+                alert("Tous les champs sont obligatoires.");
+                return false;
+            }
+
+            if (mdp !== Cmdp) {
+                alert("Les mots de passe ne correspondent pas.");
+                return false;
+            }
+
+            // Si tout est valide
+            alert("Inscription réussie ! Votre formulaire a été validé.");
+            // Soumission du formulaire
+            window.location.href="accueil.html"
+        }
+    </script>
+</head>
+<body>
+    <h1 class="h1">Bienvenue Notre Chére Client<br> Merci De Nous faire Confiance ♡ ♡  </h1>
+    <form id="registrationForm" method="post" onsubmit="validerCommande(event)">
+        <fieldset>
+            <legend>Formulaire d'inscription : </legend>
+            <label for="prénom"> Prénom </label><br>
+            <input id="prénom" name="prénom" type="text"><br>
+            <label for="nom"> Nom </label><br>
+            <input id="nom" name="nom" type="text"><br>
+            <label for="mail"> votre e-mail </label><br>
+            <input id="mail" name="mail" type="text"><br>
+            <label for="mdp"> Mot de passe </label><br>
+            <input id="mdp" name="mdp" type="password"><br>
+            <label for="Cmdp"> Confirmer le mot de passe </label><br>
+            <input id="Cmdp" name="Cmdp" type="password"><br>
+            <fieldset>
+                <legend>Genre</legend>
+                <label for="male">Male</label>
+                <input type="radio" id="male" name="genre" value="male">
+                <label for="female">Female</label>
+                <input type="radio" id="female" name="genre" value="female">
+            </fieldset>
+            <label for="pays">Pays</label><br>
+            <select name="pays" id="pays">
+                <option value="tunisie">Tunisie</option>
+                <option value="maroc">Maroc</option>
+                <option value="france">France</option>
+            </select>
+            <br><br><br>
+            <button type="submit" id="btn">S'incrire </button>
+        </fieldset>
+    </form>
+    <div id="message"></div>
+</body>
+</html>
